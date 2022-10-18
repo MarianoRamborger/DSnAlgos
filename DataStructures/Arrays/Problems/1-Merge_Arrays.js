@@ -1,7 +1,7 @@
 //Given two sorted arrays, can you merge them in one such as still sorted?
 
-const a1 = [0,3,4,10001]
-const a2 = [2,4,99,1235]
+const a1 = [0, 1, 3, 4]
+const a2 = [3, 5, 8, 10]
 
 //!------------------------ MY SOLUTIONS (blind) --------------------------
 //? Imperative way
@@ -12,23 +12,31 @@ const ImpMergeSortedArrays = (arr1, arr2) => {
   const newArray = []
   let a1Idx = 0; let a2Idx = 0;
 
-  while ((a1Idx < arr1.length) && (a2Idx < arr2.length)) {
-   
-      if (arr1[a1Idx] < arr2[a2Idx]) {
+  while ((a1Idx < arr1.length) || (a2Idx < arr2.length)) {
+    
+    //? if number in arr1 is smaller, or
+    //? we iterated through the end of arr 2 and thus arr[2Idx] is undefined, pursh from arr1
+      if (arr2[a2Idx] === undefined || arr1[a1Idx] < arr2[a2Idx]) {
         newArray.push(arr1[a1Idx])
         a1Idx++;
       } 
-      else {
+      else { //? If not push from arr2
         newArray.push(arr2[a2Idx])
         a2Idx++;
       }   
   }
    //Once you reached the end of one array, append the rest of the other one.
-    if (a1Idx < arr1.length) {
-      return newArray.concat(arr1.slice(a1Idx))
-    } else {
-      return newArray.concat(arr2.slice(a2Idx))
-    }
+   //! This one worked well enough but concatenate has an O(n)complexity
+    // if (a1Idx < arr1.length) {
+    //   return newArray.concat(arr1.slice(a1Idx))
+    // } else {
+    //   return newArray.concat(arr2.slice(a2Idx))
+    // }
+    return newArray
+
+    //! Rewrite to avoid using concat
+
+
 }
 
 //? Declarative sorting way 
@@ -37,6 +45,8 @@ const decSortMergeArrs = (arr1,arr2) => { //? Temporal complexity depends on bro
 }
 
 //! ------------------ Andrei's solution -------------------------
+//! Actually depending on the compiler,
+//! Andrei's solution might not work if both or the second array starts with 0.
 
 const andreiSorted = (arr1, arr2) => {
   const mergedArray = []
@@ -44,6 +54,8 @@ const andreiSorted = (arr1, arr2) => {
   let array2Item = arr2[0]
   let arr1Index = 1
   let arr2Index = 1
+
+  
 
   if (arr2.length === 0) {
     return arr1
