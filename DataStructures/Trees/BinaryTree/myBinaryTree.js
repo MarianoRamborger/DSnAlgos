@@ -15,6 +15,7 @@ class BinarySearchTree {
     this.root = null;
   }
   insert(value, currentNode = this.root){
+    //? Empty tree case
     if (!this.root) {
       let newNode = new bstNode(value)
       this.root = newNode
@@ -75,7 +76,7 @@ class BinarySearchTree {
   }
 
 
-  fetchParent(value) { 
+  fetchParent(value) { //? Not a classic method, but helps the delete one
     let result = {
       parent : this.root,
       target : null,
@@ -138,7 +139,6 @@ class BinarySearchTree {
   }
 
   remove(value) {
-
 
     if (!this.root) {
       console.log("Nothing to remove")

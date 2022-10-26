@@ -10,7 +10,7 @@ const firstRecurringCharacter = (arr) => {
       return arr[i]
     } 
     else {
-      hash[arr[i]] = true //? a boole is easier on memory than a str or int could be (1byte vs 8bytes)
+      hash[arr[i]] = true //? a bool is easier on memory than a str or int could be (1byte vs 8bytes)
     }
   }
 
