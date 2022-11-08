@@ -1,4 +1,6 @@
-/**
+
+//? This wasn't hard at all, actually. Just traverse the the tree and invert the left and right children as you go
+ /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
  *     this.val = (val===undefined ? 0 : val)
@@ -11,12 +13,27 @@
  * @return {TreeNode}
  */
 
- const invertTree = (root) => {
-  if (!root) {
+const invertTree = (currentNode = root) => {
+  if (!currentNode) {
     return null //This base case prevents everything from crashing.
   }
    else {
-    console.log(root.left)
-  }
+    // if ((currentNode.left) && (currentNode.right)) {
+      let cacheL = currentNode.left || null
+      let cacheR = currentNode.right || null
+      currentNode.left = cacheR
+      currentNode.right = cacheL
+    // } 
+
+    if (currentNode.right) {
+      invertTree(currentNode.right)
+      
+    }
+    if (currentNode.left) {
+      invertTree(currentNode.left)
+    }  
     
+  }
+  return currentNode
 }
+

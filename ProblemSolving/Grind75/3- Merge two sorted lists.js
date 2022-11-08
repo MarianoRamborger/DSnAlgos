@@ -26,8 +26,6 @@
 
  var mergeTwoLists = function(list1, list2) {
 
-
- 
   let newList = new ListNode()
   let head = newList
 
