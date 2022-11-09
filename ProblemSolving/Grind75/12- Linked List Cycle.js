@@ -10,7 +10,41 @@
 //! TORTOISE AND HARE SOLUTION
 
 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
 
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+ var hasCycle = function(head) {
+  if (!head) {
+    return false //? No cycle if we don't have any nodes
+  } 
+  else {
+    let slowPointer = head //This node is the turtoise. It'll move 1 node each cycle
+    let fastPointer = head //This the hare, it will mode 2 nodes each cycle
+    while (fastPointer) {  //? If, we reach the end of the linked list, it means its not cyclical.
+
+      if (!fastPointer.next) { //? This ensures we don't hit an error when making fastpointer.next.next
+        return false  //? Cause fastpointer.next is bound to exist, even if its null. 
+      }   //? But .next.next only exists if .next exists
+      else {   
+        fastPointer = fastPointer.next.next //? Fast pointer advances twice as fast...
+        
+        if (fastPointer === slowPointer) return true //? So if the list is a cycle, it'll eventually reach slowPointer
+        
+        slowPointer = slowPointer.next //? Slow pointer moves at half the speed to the fast one can eventually catch it.
+      }
+    }
+    return false //? If we managed to reach this point, its only becasue fastpointer reached the end of the list.
+  } 
+};
 
 
 
