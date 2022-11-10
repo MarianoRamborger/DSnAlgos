@@ -29,9 +29,10 @@ const iterativeFibonacci = (n) => {
   
 }
 
+
+//? Calculates the index the target fibonacci number
 const recFibonacci = (target, current = 0, b= 1, index = 0) => {
   
-
   if (current === target) {
     return index
   } else if (current > target) {
